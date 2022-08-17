@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let intern of interns">
+    <tr *ngFor="let intern of internService.interns">
       <td>{{ intern.id }}</td>
       <td>{{ intern.name | uppercase }}</td>
       <td>{{ intern.firstname }}</td>
