@@ -2,28 +2,5 @@
   {{ title }}
 </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th (click)="sortByName()">Lastname</th>
-      <th>Firstname</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let intern of interns">
-      <td>{{ intern.id }}</td>
-      <td>{{ intern.name | uppercase }}</td>
-      <td>{{ intern.firstname }}</td>
-      <td>{{ intern.email }}</td>
-      <td>{{ intern.phoneNumber }}</td>
-      <td><span (click)="onDelete(intern)">x</span></td>
-    </tr>
-  </tbody>
-</table>
-
+<app-intern-table></app-intern-table>
 
