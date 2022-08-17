@@ -34,4 +34,23 @@ export class InternService {
   public getItemNumber(): number {
     return this.interns.length;
   }
+
+  public delete(intern: Intern): void {
+    this.interns.splice(
+      this.interns.indexOf(intern),
+      1
+    );
+  }
+
+  public add(intern: Intern): void {}
+
+  public update(intern: Intern): void {}
+
+  public getAll(): Intern[] {
+    return this.interns;
+  }
+
+  public getOne(index: number): Intern {
+    return this.interns[index];
+  }
 }

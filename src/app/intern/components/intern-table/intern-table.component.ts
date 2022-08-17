@@ -19,11 +19,7 @@ export class InternTableComponent implements OnInit {
   }
 
   public onDelete(intern: Intern): void {
-    this.internService.interns.splice(
-      this.internService.interns.indexOf(intern),
-      1
-    );
-
+    this.internService.delete(intern);
   }
 
   public sortByName(): void {
