@@ -1,0 +1,23 @@
+<h2>Intern detail</h2>
+
+<ng-container *ngIf="intern; else notFound">
+  <div>
+    <p>Name : {{ intern.name }}</p>
+    <p>Firstname : {{ intern.firstname }}</p>
+    <p>Birthdate : {{ intern.birthDate }}</p>
+    <p>Email : {{ intern.email }}</p>
+    <p>Phone : {{ intern.phoneNumber }}</p>
+    <p>Address : {{ intern.address }}</p>
+  </div>
+</ng-container>
+<button type="button" (click)="navigate()">Go Home</button>
+
+<div>
+  <a [routerLink]="['/', 'interns']">Retour à la liste</a>
+</div>
+
+<ng-template #notFound>
+  <div>
+    Sorry, but no Intern does match to {{ id }} #
+  </div>
+</ng-template>

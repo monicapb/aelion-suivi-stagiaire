@@ -10,7 +10,7 @@ import { Intern } from '../models/intern';
 export class InternService implements ICrud<Intern> {
   public interns: Intern[] = [
     {
-      id: 125,
+      id: 1,
       name: 'Aubert',
       firstname: 'Jean-Luc',
       email: 'jla.webprojet@gmail.com',
@@ -19,7 +19,7 @@ export class InternService implements ICrud<Intern> {
       address: '10 rue du Stade'
     },
     {
-      id: 2,
+      id: 125,
       name: 'Pina',
       firstname: 'Monica',
       email: 'cbien@hotmail.fr',
@@ -52,17 +52,6 @@ export class InternService implements ICrud<Intern> {
       (obj: Intern) => obj.id === id
     );
 
-    /**
-     * let internFound: Intern | undefined = undefined;
-     *
-     * for (const intern of this.interns) {
-     *  if (intern.id === id) {
-     *    internFound = intern;
-     *    break;
-     *  }
-     * }
-     *
-     */
     return (intern === undefined) ? null : intern;
 
     /**
