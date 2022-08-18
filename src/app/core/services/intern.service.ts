@@ -1,3 +1,4 @@
+import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Logger } from '../helpers/logger';
 import { ICrud } from '../interfaces/i-crud';
@@ -93,23 +94,7 @@ export class InternService implements ICrud<Intern> {
   public update(intern: Intern): void {
     let oldIntern: Intern | null = this.findOne(intern.id!);
     if (oldIntern !== null) {
-      oldIntern.name = intern.name;
-      oldIntern.firstname = intern.firstname;
-      oldIntern.address = intern.address;
-      oldIntern.birthDate = intern.birthDate;
-      oldIntern.email = intern.email;
-      oldIntern.phoneNumber = intern.phoneNumber;
-
-      // oldIntern = {...intern};
+      oldIntern = {id: oldIntern.id, ...intern};
     }
-
-  }
-
-  public gotOne(): Intern[] {
-    return this.interns;
-  }
-
-  public getOne(index: number): Intern {
-    return this.interns[index];
   }
 }
