@@ -13,7 +13,8 @@ export class InternTableComponent implements OnInit {
 
   constructor(
     public internService: InternService // Dependency Injection (D de SOLID)
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
