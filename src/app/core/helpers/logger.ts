@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-export class Logger {
+export abstract class Logger {
   public static globalStyle: string [] = [
     'color: white',
     'font-size: 16px'
