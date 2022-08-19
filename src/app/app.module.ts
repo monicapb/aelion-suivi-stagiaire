@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InternTableComponent } from './intern/components/intern-table/intern-table.component';
-import { InternDetailComponent } from './intern/components/intern-detail/intern-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { InternModule } from './intern/intern.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InternTableComponent,
-    InternDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    InternModule
   ],
   providers: [],
   bootstrap: [AppComponent]
