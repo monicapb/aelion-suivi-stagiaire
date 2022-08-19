@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InternAddComponent } from './intern/components/intern-add/intern-add.component';
 import { InternDetailComponent } from './intern/components/intern-detail/intern-detail.component';
 import { InternTableComponent } from './intern/components/intern-table/intern-table.component';
 
@@ -21,6 +22,10 @@ export class AppRoutingModule {
     {
       path: 'intern/:id',
       component: InternDetailComponent
+    },
+    {
+      path: 'intern/manage/add',
+      component: InternAddComponent,
     },
     {
       path: '**',
