@@ -1,0 +1,7 @@
+<form [formGroup]="internForm">
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Your name..." autocomplete="do-not-fill">
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" [disabled]="internForm.invalid">Save</button>
+</form>
