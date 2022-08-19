@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { UiModule } from '../ui/ui.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   imports: [
-    UiModule
+    UiModule,
+    ReactiveFormsModule
   ],
   declarations: [
     HeaderComponent,
@@ -16,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     UiModule,
+    ReactiveFormsModule,
     HeaderComponent,
     FooterComponent
   ]
