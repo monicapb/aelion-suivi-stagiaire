@@ -86,4 +86,13 @@ export class InternService implements ICrud<Intern> {
       oldIntern = {id: oldIntern.id, ...intern};
     }
   }
+
+  public getNextId(): number {
+
+    return this.interns.sort(
+      (intern1: Intern, intern2: Intern) => {
+        return (intern1.id! - intern2.id!) * -1
+      }
+    )[0].id! + 1;
+  }
 }
