@@ -7,7 +7,7 @@ import { InternService } from './core/services/intern.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public title = 'Hello Angular 13';
+  public title = 'Aélion Suivi des Stagiaires';
 
   public constructor(
     public internService: InternService
