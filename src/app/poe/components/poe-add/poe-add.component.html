@@ -1,1 +1,9 @@
-<p>poe-add works!</p>
+<form [formGroup]="poeForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="title" placeholder="Your title..." autocomplete="do-not-fill">
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" [disabled]="poeForm.invalid">Save</button>
+</form>
+
+
