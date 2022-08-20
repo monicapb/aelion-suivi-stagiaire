@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { POEService } from 'src/app/core/services/poe.service';
 
 @Component({
   selector: 'app-poe-table',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class POETableComponent implements OnInit {
 
-  constructor() { }
+  constructor(public poeService : POEService) { }
 
   ngOnInit(): void {
   }

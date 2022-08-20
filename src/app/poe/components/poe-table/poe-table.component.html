@@ -1,1 +1,24 @@
-<p>poe-table works!</p>
+<h2>POE list</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Titre</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let poe of poeService.poeiCollections">
+      <td>{{ poe.id }}</td>
+      <td>
+        <a [routerLink]="['/', 'poedetail', poe.id]">{{ poe.title | uppercase }}</a>
+      </td>
+      <td><span (click)="poeService.delete(poe)">x</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<a [routerLink]="['/', 'poe', 'manage', 'add']">Add a poe</a>
+
