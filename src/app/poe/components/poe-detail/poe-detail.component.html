@@ -1,1 +1,14 @@
-<p>poe-detail works!</p>
+<h2>Poe detail</h2>
+
+<ng-container *ngIf="poe">
+  <div>
+    <p>Titre : {{ poe.title }}</p>
+    <p>Date de debut : {{ poe.createAt }}</p>
+    <p>Date de fin : {{ poe.endDate }}</p>
+  </div>
+</ng-container>
+
+<div>
+  <a [routerLink]="['/', 'poecollections']">Retour à la liste de Poe</a>
+</div>
+
