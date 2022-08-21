@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CrudSnackbarService } from 'src/app/core/services/crud-snackbar.service';
 import { InternService } from 'src/app/core/services/intern.service';
 import { Intern } from './../../../core/models/intern';
 @Component({
@@ -15,7 +16,8 @@ export class InternAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private internService: InternService,
-    private router: Router
+    private router: Router,
+    private crudSnackBar: CrudSnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -42,8 +44,14 @@ export class InternAddComponent implements OnInit {
     // We'll have to pass brand new intern to the add method of our service
     this.internService.add(intern);
 
+    // Load a snack
+    this.crudSnackBar.config(`Intern was successfully added`, `Got It`);
+    this.crudSnackBar.open();
+    
     // Finally go to the intern table component
     this.router.navigate(['/', 'interns']);
+
+
   }
 
 }
