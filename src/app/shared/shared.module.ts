@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgePipe } from './pipes/age.pipe';
+import { InitialsDirective } from './directives/initials.directive';
 
 
 
@@ -17,7 +18,8 @@ import { AgePipe } from './pipes/age.pipe';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    AgePipe
+    AgePipe,
+    InitialsDirective
   ],
   exports: [
     UiModule,
@@ -25,7 +27,8 @@ import { AgePipe } from './pipes/age.pipe';
     HeaderComponent,
     FooterComponent,
     HttpClientModule,
-    AgePipe
+    AgePipe,
+    InitialsDirective
   ]
 })
 export class SharedModule { }

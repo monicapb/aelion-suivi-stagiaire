@@ -21,7 +21,9 @@
       <td>{{ intern.firstname }}</td>
       <td>{{ intern.email }}</td>
       <td>{{ intern.phoneNumber }}</td>
-      <td><span (click)="onDelete(intern)">x</span></td>
+      <td><span (click)="onDelete(intern)">
+        <div appInitials [intern]="intern" [config]="bubbleConfig"></div>
+      </span></td>
     </tr>
   </tbody>
 </table>
