@@ -4,6 +4,8 @@ import { UiModule } from '../ui/ui.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AgePipe } from './pipes/age.pipe';
 
 
 
@@ -14,13 +16,16 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AgePipe
   ],
   exports: [
     UiModule,
     ReactiveFormsModule,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HttpClientModule,
+    AgePipe
   ]
 })
 export class SharedModule { }
