@@ -1,98 +1,78 @@
+import { HttpClient } from '@angular/common/http';
 import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 import { Logger } from '../helpers/logger';
 import { ICrud } from '../interfaces/i-crud';
 import { Intern } from '../models/intern';
-
+import { environment } from './../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class InternService implements ICrud<Intern> {
-  public interns: Intern[] = [
-    {
-      id: 1,
-      name: 'Aubert',
-      firstname: 'Jean-Luc',
-      email: 'jla.webprojet@gmail.com',
-      phoneNumber: '+(33)6 23 56 89 54',
-      birthDate: new Date(1968, 3, 30),
-      address: '10 rue du Stade'
-    },
-    {
-      id: 125,
-      name: 'Pina',
-      firstname: 'Monica',
-      email: 'cbien@hotmail.fr',
-      phoneNumber: '+(33)6 45 78 96 32',
-      birthDate: new Date(1995, 10, 26),
-      address: '15 place de la République'
-    },
-    {
-      id: 3,
-      name: 'Castanie',
-      firstname: 'Piotr',
-      email: 'pedrito@caramba.com',
-      phoneNumber: '+(33)6 45 78 96 32',
-      birthDate: new Date(1998, 8, 23),
-      address: '1, place du Champ de Mars'
-    }
-  ];
 
-  constructor() {
-    Logger.info(`I'm a Singleton`);
+
+  constructor(
+    private httpClient: HttpClient
+  ) {}
+
+  findAll(): Observable<Intern[]> {
+    return this.httpClient.get<any>(
+      `${environment.apiRoot}intern`
+    ).pipe(
+      take(1),
+      map((rawInterns: any) => {
+        return rawInterns.map((rawIntern: any) => {
+          const intern: Intern = new Intern();
+          intern.id = rawIntern.id;
+          intern.name = rawIntern.name;
+          intern.firstname = rawIntern.firstName;
+          intern.address = rawIntern.address;
+          intern.email = rawIntern.email;
+          intern.phoneNumber = rawIntern.phoneNumber;
+          intern.birthDate = new Date(rawIntern.birthDate);
+
+          return intern;
+        })
+      })
+    )
   }
 
-  findAll(): Intern[] {
-    // Your logic here !
-    return this.interns;
-  }
+  findOne(id: number): Observable<Intern | null> {
+    return this.httpClient.get<any>(
+      `${environment.apiRoot}intern/${id}`
+    )
+    .pipe(
+      take(1),
+      map((rawIntern: any) => {
+        const intern: Intern = new Intern();
+        intern.id = rawIntern.id;
+        intern.name = rawIntern.name;
+        intern.firstname = rawIntern.firstName;
+        intern.address = rawIntern.address;
+        intern.email = rawIntern.email;
+        intern.phoneNumber = rawIntern.phoneNumber;
+        intern.birthDate = new Date(rawIntern.birthDate);
 
-  findOne(id: number): Intern | null {
-    const intern: Intern | undefined = this.interns.find(
-      (obj: Intern) => obj.id === id
-    );
-
-    return (intern === undefined) ? null : intern;
-
-    /**
-    if (intern === undefined) {
-      return null;
-    }
-    return intern;
-    **/
+        return intern;
+      })
+    )
 
   }
 
   public getItemNumber(): number {
-    return this.interns.length;
+    return 0;
   }
 
-  public delete(intern: Intern): void {
-    this.interns.splice(
-      this.interns.indexOf(intern),
-      1
-    );
-  }
+  public delete(intern: Intern): void {}
 
-  public add(intern: Intern): void {
-   if (this.findOne(intern.id!) === null) {
-    this.interns.push(intern);
-   }
-  }
+  public add(intern: Intern): void {}
 
-  public update(intern: Intern): void {
-    let oldIntern: Intern | null = this.findOne(intern.id!);
-    if (oldIntern !== null) {
-      oldIntern = {id: oldIntern.id, ...intern};
-    }
-  }
+  public update(intern: Intern): void {}
 
   public getNextId(): number {
 
-    return this.interns.sort(
-      (intern1: Intern, intern2: Intern) => {
-        return (intern1.id! - intern2.id!) * -1
-      }
-    )[0].id! + 1;
+    return 0;
   }
 }
