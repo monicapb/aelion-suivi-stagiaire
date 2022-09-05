@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let poe of poeService.poeiCollections">
+    <tr *ngFor="let poe of poes">
       <td>{{ poe.id }}</td>
       <td>
         <a [routerLink]="['/', 'poedetail', poe.id]">{{ poe.title | uppercase }}</a>
