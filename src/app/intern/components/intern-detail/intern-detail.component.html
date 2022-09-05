@@ -2,6 +2,9 @@
 
 <ng-container *ngIf="intern; else notFound">
   <div>
+    <!-- div was displayed when an intern was up -->
+    <div *ngIf="intern" appInitials [intern]="intern"></div>
+    
     <p>Name : {{ intern.name }}</p>
     <p>Firstname : {{ intern.firstname }}</p>
     <p>Birthdate : {{ intern.birthDate }} ({{ intern.birthDate! | age | async }})</p>
