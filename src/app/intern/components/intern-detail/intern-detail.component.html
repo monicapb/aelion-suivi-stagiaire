@@ -4,7 +4,7 @@
   <div>
     <p>Name : {{ intern.name }}</p>
     <p>Firstname : {{ intern.firstname }}</p>
-    <p>Birthdate : {{ intern.birthDate }}</p>
+    <p>Birthdate : {{ intern.birthDate }} ({{ intern.birthDate! | age | async }})</p>
     <p>Email : {{ intern.email }}</p>
     <p>Phone : {{ intern.phoneNumber }}</p>
     <p>Address : {{ intern.address }}</p>

@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap, Params, Router, RouterStateSnapshot } from '@
 import { Logger } from 'src/app/core/helpers/logger';
 import { Intern } from 'src/app/core/models/intern';
 import { InternService } from 'src/app/core/services/intern.service';
-
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-intern-detail',
   templateUrl: './intern-detail.component.html',
@@ -18,18 +18,19 @@ export class InternDetailComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private internService: InternService
-  ) {
+  ) {}
 
+  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(
       (paramMap: ParamMap) => {
         this._id = +paramMap.get('id')!;
-        this.intern = this.internService.findOne(this._id);
+        this.internService.findOne(this._id).pipe(
+          take(1)
+        ).subscribe((intern: Intern| null) => {
+          this.intern = intern;
+        });
       }
     )
-  }
-
-  ngOnInit(): void {
-
   }
 
   public get id(): number {

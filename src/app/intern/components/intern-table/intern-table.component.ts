@@ -11,12 +11,18 @@ import { Intern } from './../../../core/models/intern';
 export class InternTableComponent implements OnInit {
   private static sortOrder: number = 1;
 
+  public interns: Intern[] = [];
+
   constructor(
     public internService: InternService // Dependency Injection (D de SOLID)
   ) {
   }
 
   ngOnInit(): void {
+    this.internService.findAll()
+      .subscribe((interns: Intern[]) => {
+        this.interns = interns;
+      })
   }
 
   public onDelete(intern: Intern): void {
@@ -25,7 +31,7 @@ export class InternTableComponent implements OnInit {
 
   public sortByName(): void {
     Logger.info(`Before sort, sortOrder is : ${InternTableComponent.sortOrder}`);
-    this.internService.interns.sort(
+    this.interns.sort(
       InternTableComponent.sortName
     );
     InternTableComponent.sortOrder = InternTableComponent.sortOrder * -1;
