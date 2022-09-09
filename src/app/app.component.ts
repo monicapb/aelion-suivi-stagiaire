@@ -15,7 +15,7 @@ export class AppComponent  implements OnInit {
 
   ngOnInit(): void {
   this.internService.findAll().subscribe();
-  const sanitized: string = StringHelper.sanitizePunctuation('Cc, u , how are you');
+  const sanitized: string = StringHelper.sanitizePunctuation('Ca va ? Toi. toi aussi, merci');
   console.log(sanitized);
   }
 
