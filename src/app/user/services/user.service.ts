@@ -37,14 +37,14 @@ export class UserService {
 
 
     // Approche old school
-    for (let i: number = 0; i < this.users.length; i++) {
-      const inUser: any = this.users[i];
-      if (inUser.email === credentials.email && inUser.pass === credentials.pass) {
-        this.user = new UserModel();
-        this.user.setEmail(credentials.email);
-        this.user.setToken(credentials.email + '.xxxxxx.yyyyyyy');
-      }
-    }
+    // for (let i: number = 0; i < this.users.length; i++) {
+    //   const inUser: any = this.users[i];
+    //   if (inUser.email === credentials.email && inUser.pass === credentials.pass) {
+    //     this.user = new UserModel();
+    //     this.user.setEmail(credentials.email);
+    //     this.user.setToken(credentials.email + '.xxxxxx.yyyyyyy');
+    //   }
+    // }
 
 
   }
