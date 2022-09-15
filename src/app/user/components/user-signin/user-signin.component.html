@@ -1,1 +1,13 @@
-<p>user-signin works!</p>
+<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <input matInput formControlName="login" placeholder="Your email...">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="pass" type="password" placeholder="Your password....">
+    </mat-form-field>
+
+   <button mat-raised-button color="primary" [disabled]="signinForm.invalid">Sign in</button>
+
+</form>
