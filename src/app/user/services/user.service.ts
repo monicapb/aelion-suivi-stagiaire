@@ -9,11 +9,11 @@ export class UserService {
 
   private users: any  [] = [
   {
-    login: 'Moreno',
-    pass: '007'
+    email: 'monica.gmail.com',
+    pass: 'nikita'
   },
   {
-    login: 'Zoto',
+    email: 'Zoto',
     pass: 'VIP'
   }
 ];
@@ -27,10 +27,10 @@ export class UserService {
   public signin(credentials: any): void{
     Logger.info(JSON.stringify(credentials));
     for(const userIsExist of this.users) {
-      if(userIsExist.login === credentials.login && userIsExist.pass === credentials.token) {
+      if(userIsExist.email === credentials.email && userIsExist.pass === credentials.pass) {
         this.user = new UserModel();
-        this.user.setLogin(credentials.login);
-        this.user.setToken(credentials.login + '.2414845.184851151');
+        this.user.setEmail(credentials.email);
+        this.user.setToken(credentials.email + '.2414845.184851151');
       }
     }
 
@@ -39,10 +39,10 @@ export class UserService {
     // Approche old school
     for (let i: number = 0; i < this.users.length; i++) {
       const inUser: any = this.users[i];
-      if (inUser.login === credentials.login && inUser.pass === credentials.pass) {
+      if (inUser.email === credentials.email && inUser.pass === credentials.pass) {
         this.user = new UserModel();
-        this.user.setLogin(credentials.login);
-        this.user.setToken(credentials.login + '.xxxxxx.yyyyyyy');
+        this.user.setEmail(credentials.email);
+        this.user.setToken(credentials.email + '.xxxxxx.yyyyyyy');
       }
     }
 

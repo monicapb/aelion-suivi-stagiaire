@@ -1,14 +1,14 @@
 export class UserModel {
-  private login: string = '';
+  private email: string = '';
   private token: string = '';
 
-  public getLogin(): string {
-    return this.getLogin();
+  public getEmail(): string {
+    return this.getEmail();
 
   }
 
-  public setLogin(login: string): void {
-    this.login = login;
+  public setEmail(email: string): void {
+    this.email = email;
 
   }
 

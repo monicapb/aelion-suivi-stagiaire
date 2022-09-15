@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Logger } from 'src/app/core/helpers/logger';
 import { UserService } from './../../services/user.service';
 @Component({
   selector: 'app-user-signin',
@@ -22,7 +23,7 @@ export class UserSigninComponent implements OnInit {
   ngOnInit(): void {
 
     this.signinForm = this.formBuilder.group({
-      login: [
+      email: [
         '',
         Validators.required
       ],
@@ -35,6 +36,11 @@ export class UserSigninComponent implements OnInit {
 
   public onSubmit(): void{
      this.userService.signin(this.signinForm.value);
+     if(this.userService.isAuthenticated()) {
+      Logger.info('good')
+     }else{
+      Logger.info('pas good')
+     }
   }
 
 }
