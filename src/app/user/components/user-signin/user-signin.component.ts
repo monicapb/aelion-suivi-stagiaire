@@ -49,7 +49,7 @@ export class UserSigninComponent implements OnInit {
      }else{
       this.signinForm.reset();
       this.snackbar.config('Votre email et password ne sont pas corrects!');
-      this.snackbar.open()
+      this.snackbar.open();
 
      }
 
