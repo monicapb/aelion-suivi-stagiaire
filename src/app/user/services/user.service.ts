@@ -77,6 +77,14 @@ export class UserService {
  * @returns Si j'ai un user connected ou pas
  */
   public isAuthenticated(): boolean{
+    const userAsString: any | null = localStorage.getItem(this.STORAGE_KEY);
+    if(userAsString !== null) {
+      this.user = new UserModel();
+      const persistentUser : any = JSON.parse(userAsString);
+      this.user.setEmail(persistentUser.email);
+      this.user.setToken(persistentUser.token);
+    }
+
     return this.user !== null;
   }
 
