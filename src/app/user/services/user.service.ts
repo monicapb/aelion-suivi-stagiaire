@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Logger } from 'src/app/core/helpers/logger';
 import { UserModel } from '../models/user-model';
 
@@ -19,7 +20,15 @@ export class UserService {
 ];
   private user: UserModel | null = null;
 
-  constructor() { }
+  /**
+   * Un attribut privé on le met en maj et sera une constante
+   */
+  private readonly STORAGE_KEY: string = 'auto_token';
+
+
+  constructor(
+    private router : Router
+  ) { }
 /**
  *
  * @param credentials il vient du form , espace login avec le mail et le mdp
@@ -31,6 +40,10 @@ export class UserService {
         this.user = new UserModel();
         this.user.setEmail(credentials.email);
         this.user.setToken(credentials.email + '.2414845.184851151');
+
+        // Pour convertir un objet en string, on utilise JSON.stringify()
+        // Dans mon cas je veux que mon instance de mon user soit converti en chaine de caractere
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.user));
       }
     }
 
@@ -50,6 +63,13 @@ export class UserService {
   }
 
   public signout(): void{
+    this.user = null;
+    // On enleve mon item concerné avec sa valeur
+    localStorage.removeItem(this.STORAGE_KEY);
+
+    // redirectToRoute into signin
+    this.router.navigateByUrl('/signin');
+
 
   }
 /**

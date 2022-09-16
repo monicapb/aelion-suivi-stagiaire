@@ -16,7 +16,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     UiModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   declarations: [
     HeaderComponent,
