@@ -67,7 +67,26 @@ export class InternService implements ICrud<Intern> {
 
   public delete(intern: Intern): void {}
 
-  public add(intern: Intern): void {}
+  public add(intern: Intern): Observable<Intern>  {
+    return this.httpClient.post(`${environment.apiRoot}intern`, intern)
+    .pipe(
+      take(1),
+      map((rawIntern: any) => {
+        const intern: Intern = new Intern();
+        intern.id = rawIntern.id;
+        intern.name = rawIntern.name;
+        intern.firstname = rawIntern.firstName;
+        intern.address = rawIntern.address;
+        intern.email = rawIntern.email;
+        intern.phoneNumber = rawIntern.phoneNumber;
+        intern.birthDate = new Date(rawIntern.birthDate);
+
+        return intern;
+      })
+    )
+
+
+  }
 
   public update(intern: Intern): void {}
 
