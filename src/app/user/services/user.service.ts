@@ -77,6 +77,10 @@ export class UserService {
  * @returns Si j'ai un user connected ou pas
  */
   public isAuthenticated(): boolean{
+    return this.user !== null;
+  }
+
+  public getToken(): void {
     const userAsString: any | null = localStorage.getItem(this.STORAGE_KEY);
     if(userAsString !== null) {
       this.user = new UserModel();
@@ -85,7 +89,6 @@ export class UserService {
       this.user.setToken(persistentUser.token);
     }
 
-    return this.user !== null;
   }
 
 }
