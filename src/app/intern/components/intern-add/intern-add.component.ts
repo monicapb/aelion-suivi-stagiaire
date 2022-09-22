@@ -42,15 +42,14 @@ export class InternAddComponent implements OnInit {
     intern.name = this.internForm.value.name;
 
     // We'll have to pass brand new intern to the add method of our service
-    this.internService.add(intern).subscribe();
-
-    // Load a snack
+    this.internService.add(intern).subscribe(() => {
+      // Load a snack
     this.crudSnackBar.config(`Intern was successfully added`, `Got It`);
     this.crudSnackBar.open();
 
     // Finally go to the intern table component
     this.router.navigate(['/', 'interns']);
-
+    });
 
   }
 

@@ -24,15 +24,17 @@ export class InternTableComponent implements OnInit {
     verticalAlign: 'middle',
     textAlign: 'center'
   }
-  
+
   constructor(
     public internService: InternService // Dependency Injection (D de SOLID)
   ) {
   }
 
   ngOnInit(): void {
+    console.log('before findall')
     this.internService.findAll()
       .subscribe((interns: Intern[]) => {
+        console.log('after findall')
         this.interns = interns;
       })
   }
