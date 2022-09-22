@@ -13,7 +13,8 @@ export class POEAddComponent implements OnInit {
 
   public poeForm! : FormGroup;
 
-  constructor(public poeService : POEService,
+  constructor(
+    public poeService : POEService,
     private router : Router,
     private formBuilder : FormBuilder) { }
 
@@ -30,18 +31,20 @@ export class POEAddComponent implements OnInit {
   }
   public onSubmit(): void {
     console.log(`Bout to send : ${JSON.stringify(this.poeForm.value)}`);
-    const nextId: number = this.poeService.getNextId();
+
 
     // Next we'll have to create a new Intern Instance
     const poe: POE = new POE();
-    poe.id = nextId;
-     poe.title = this.poeForm.value.title;
+
+     poe.name = this.poeForm.value.title;
 
     // We'll have to pass brand new intern to the add method of our service
-    this.poeService.add(poe);
-
-    // Finally go to the intern table component
+    this.poeService.add(poe).subscribe(() => {
+       // Finally go to the intern table component
     this.router.navigate(['/', 'poecollections']);
+    });
+
+
   }
 
 

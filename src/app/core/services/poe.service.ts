@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of, take } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ICrud } from '../interfaces/i-crud';
 import { POE } from '../models/poe';
 
@@ -9,9 +11,43 @@ import { POE } from '../models/poe';
 export class POEService implements ICrud<POE>{
 
 
-  constructor() {}
+  constructor(
+    private httpClient: HttpClient
+  ) {}
 
-  add(item: POE): void {
+  findAll(): Observable<POE[]> {
+    return this.httpClient.get<any>(
+      `${environment.apiRoot}poe`
+    ).pipe(
+      take(1),
+      map((rawPoe: any) => {
+        return rawPoe.map((rawPoe: any) => {
+          const poe: POE= new POE();
+          poe.id = rawPoe.id;
+          poe.beginDate = new Date(rawPoe.beginDate);
+          poe.endDate = new Date (rawPoe.endDate);
+          poe.name = rawPoe.name;
+
+
+          return poe;
+        })
+      })
+    )
+  }
+
+  public add(poe: POE): Observable<POE>  {
+    return this.httpClient.post(`${environment.apiRoot}poe`, poe
+    ).pipe(
+      take(1),
+      map((rawPoe: any) => {
+          const poe: POE= new POE();
+          poe.id = rawPoe.id;
+          poe.beginDate = new Date(rawPoe.beginDate);
+          poe.endDate= new Date (rawPoe.endDate);
+          poe.name = rawPoe.name;
+          return poe;
+        })
+      )
 
   }
 
@@ -20,10 +56,6 @@ export class POEService implements ICrud<POE>{
   }
   delete(item: POE): void {
 
-  }
-
-  findAll(): Observable<POE[]> {
-    return of([]);
   }
 
   findOne(id: number): Observable<POE | null> {

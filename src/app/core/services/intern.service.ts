@@ -84,8 +84,6 @@ export class InternService implements ICrud<Intern> {
         return intern;
       })
     )
-
-
   }
 
   public update(intern: Intern): void {}

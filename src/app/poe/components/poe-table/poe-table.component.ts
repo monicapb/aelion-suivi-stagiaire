@@ -12,9 +12,12 @@ export class POETableComponent implements OnInit {
   constructor(public poeService : POEService) { }
 
   ngOnInit(): void {
-    this.poeService.findAll().pipe(
+    console.log('Before findall POES')
+    this.poeService.findAll()
+    .pipe(
       take(1)
     ).subscribe((poes: POE[]) => {
+      console.log('After findall POES')
       this.poes = poes;
     })
   }
