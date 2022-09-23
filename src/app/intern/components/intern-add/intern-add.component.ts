@@ -28,6 +28,34 @@ export class InternAddComponent implements OnInit {
           Validators.required,
           Validators.minLength(2)
         ]
+      ],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2)
+        ]
+      ],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}'))
+        ]
+      ],
+      phoneNumber: [
+        '',
+        [
+
+          Validators.minLength(2)
+        ]
+      ],
+      birthDate: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2)
+        ]
       ]
     });
   }

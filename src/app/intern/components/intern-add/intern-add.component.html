@@ -3,6 +3,22 @@
     <input matInput formControlName="name" placeholder="Your name..." autocomplete="do-not-fill">
   </mat-form-field>
 
+  <mat-form-field>
+    <input matInput formControlName="firstName" placeholder="Your first name..." autocomplete="do-not-fill">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="Your email..." autocomplete="do-not-fill" required="true" pattern="RegExp">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="phoneNumber" placeholder="Your phone number..." autocomplete="do-not-fill">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="birthDate" type="date"placeholder="Your birth date..." autocomplete="do-not-fill">
+  </mat-form-field>
+
   <button mat-raised-button color="accent" [disabled]="internForm.invalid">Save</button>
 </form>
 
