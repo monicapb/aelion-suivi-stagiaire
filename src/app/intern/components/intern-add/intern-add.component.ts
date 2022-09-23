@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Logger } from 'src/app/core/helpers/logger';
 import { CrudSnackbarService } from 'src/app/core/services/crud-snackbar.service';
 import { InternService } from 'src/app/core/services/intern.service';
+import { POEService } from 'src/app/core/services/poe.service';
 import { DateValidator } from 'src/app/core/validators/date-validator';
 import { Intern } from './../../../core/models/intern';
 @Component({
@@ -17,6 +18,7 @@ export class InternAddComponent implements OnInit {
   public internForm!: FormGroup;
 
   constructor(
+    private poeService : POEService,
     private formBuilder: FormBuilder,
     private internService: InternService,
     private router: Router,

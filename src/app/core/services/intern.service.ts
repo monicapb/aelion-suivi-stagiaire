@@ -25,13 +25,15 @@ export class InternService implements ICrud<Intern> {
       map((rawInterns: any) => {
         return rawInterns.map((rawIntern: any) => {
           const intern: Intern = new Intern();
-          intern.id = rawIntern.id;
-          intern.name = rawIntern.name;
-          intern.firstname = rawIntern.firstName;
-          intern.address = rawIntern.address;
-          intern.email = rawIntern.email;
-          intern.phoneNumber = rawIntern.phoneNumber;
-          intern.birthDate = new Date(rawIntern.birthDate);
+          // mon ÇA rawInterns sera convertit en object dans la methode deserialize
+          intern.deserialize(rawIntern);
+          // intern.id = rawIntern.id;
+          // intern.name = rawIntern.name;
+          // intern.firstname = rawIntern.firstName;
+          // intern.address = rawIntern.address;
+          // intern.email = rawIntern.email;
+          // intern.phoneNumber = rawIntern.phoneNumber;
+          // intern.birthDate = new Date(rawIntern.birthDate);
 
           return intern;
         })

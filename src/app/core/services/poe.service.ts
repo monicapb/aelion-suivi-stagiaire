@@ -41,10 +41,11 @@ export class POEService implements ICrud<POE>{
       take(1),
       map((rawPoe: any) => {
           const poe: POE= new POE();
-          poe.id = rawPoe.id;
-          poe.beginDate = new Date(rawPoe.beginDate);
-          poe.endDate= new Date (rawPoe.endDate);
-          poe.name = rawPoe.name;
+            poe.deserialize(rawPoe);
+          // poe.id = rawPoe.id;
+          // poe.beginDate = new Date(rawPoe.beginDate);
+          // poe.endDate= new Date (rawPoe.endDate);
+          // poe.name = rawPoe.name;
           return poe;
         })
       )
