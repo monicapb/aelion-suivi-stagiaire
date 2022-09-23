@@ -1,25 +1,37 @@
 <form [formGroup]="internForm" (ngSubmit)="onSubmit()">
+
+<div class="formGroup">
   <mat-form-field>
     <input matInput formControlName="name" placeholder="Your name..." autocomplete="do-not-fill">
   </mat-form-field>
+</div>
 
+<div class="form-group">
   <mat-form-field>
     <input matInput formControlName="firstName" placeholder="Your first name..." autocomplete="do-not-fill">
   </mat-form-field>
+</div>
 
+<div class="form-group">
   <mat-form-field>
-    <input matInput formControlName="email" placeholder="Your email..." autocomplete="do-not-fill" required="true" pattern="RegExp">
+    <input matInput formControlName="email" placeholder="Your email..." autocomplete="do-not-fill">
   </mat-form-field>
+</div>
 
+<div class="form-group">
   <mat-form-field>
     <input matInput formControlName="phoneNumber" placeholder="Your phone number..." autocomplete="do-not-fill">
   </mat-form-field>
-
+</div>
+<!-- Ajouter les errors voir la doc material pour ce week-end  -->
+<div class="form-group">
   <mat-form-field>
     <input matInput formControlName="birthDate" type="date"placeholder="Your birth date..." autocomplete="do-not-fill">
   </mat-form-field>
+</div>
 
   <button mat-raised-button color="accent" [disabled]="internForm.invalid">Save</button>
+
 </form>
 
 

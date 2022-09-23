@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { Logger } from 'src/app/core/helpers/logger';
 import { CrudSnackbarService } from 'src/app/core/services/crud-snackbar.service';
 import { InternService } from 'src/app/core/services/intern.service';
+import { DateValidator } from 'src/app/core/validators/date-validator';
 import { Intern } from './../../../core/models/intern';
 @Component({
   selector: 'app-intern-add',
@@ -54,7 +57,8 @@ export class InternAddComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(2)
+          DateValidator.dateNotLessThan
+
         ]
       ]
     });
