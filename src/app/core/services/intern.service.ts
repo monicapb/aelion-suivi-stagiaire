@@ -26,7 +26,8 @@ export class InternService implements ICrud<Intern> {
         return rawInterns.map((rawIntern: any) => {
           const intern: Intern = new Intern();
           // mon ÇA rawInterns sera convertit en object dans la methode deserialize
-          intern.deserialize(rawIntern);
+          return intern.deserialize(rawIntern);
+
           // intern.id = rawIntern.id;
           // intern.name = rawIntern.name;
           // intern.firstname = rawIntern.firstName;
@@ -35,7 +36,7 @@ export class InternService implements ICrud<Intern> {
           // intern.phoneNumber = rawIntern.phoneNumber;
           // intern.birthDate = new Date(rawIntern.birthDate);
 
-          return intern;
+
         })
       })
     )
@@ -49,13 +50,14 @@ export class InternService implements ICrud<Intern> {
       take(1),
       map((rawIntern: any) => {
         const intern: Intern = new Intern();
-        intern.id = rawIntern.id;
-        intern.name = rawIntern.name;
-        intern.firstname = rawIntern.firstName;
-        intern.address = rawIntern.address;
-        intern.email = rawIntern.email;
-        intern.phoneNumber = rawIntern.phoneNumber;
-        intern.birthDate = new Date(rawIntern.birthDate);
+        return intern.deserialize(rawIntern);
+        // intern.id = rawIntern.id;
+        // intern.name = rawIntern.name;
+        // intern.firstname = rawIntern.firstName;
+        // intern.address = rawIntern.address;
+        // intern.email = rawIntern.email;
+        // intern.phoneNumber = rawIntern.phoneNumber;
+        // intern.birthDate = new Date(rawIntern.birthDate);
 
         return intern;
       })
@@ -63,27 +65,22 @@ export class InternService implements ICrud<Intern> {
 
   }
 
-  public getItemNumber(): number {
-    return 0;
-  }
-
-  public delete(intern: Intern): void {}
-
   public add(intern: Intern): Observable<Intern>  {
     return this.httpClient.post(`${environment.apiRoot}intern`, intern)
     .pipe(
       take(1),
       map((rawIntern: any) => {
         const intern: Intern = new Intern();
-        intern.id = rawIntern.id;
-        intern.name = rawIntern.name;
-        intern.firstname = rawIntern.firstName;
-        intern.address = rawIntern.address;
-        intern.email = rawIntern.email;
-        intern.phoneNumber = rawIntern.phoneNumber;
-        intern.birthDate = new Date(rawIntern.birthDate);
+        return intern.deserialize(rawIntern);
+        // intern.id = rawIntern.id;
+        // intern.name = rawIntern.name;
+        // intern.firstname = rawIntern.firstName;
+        // intern.address = rawIntern.address;
+        // intern.email = rawIntern.email;
+        // intern.phoneNumber = rawIntern.phoneNumber;
+        // intern.birthDate = new Date(rawIntern.birthDate);
 
-        return intern;
+
       })
     )
   }
@@ -94,4 +91,10 @@ export class InternService implements ICrud<Intern> {
 
     return 0;
   }
+
+  public getItemNumber(): number {
+    return 0;
+  }
+
+  public delete(intern: Intern): void {}
 }

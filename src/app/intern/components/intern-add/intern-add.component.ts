@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { take } from 'rxjs';
 import { Logger } from 'src/app/core/helpers/logger';
+import { POE } from 'src/app/core/models/poe';
 import { CrudSnackbarService } from 'src/app/core/services/crud-snackbar.service';
 import { InternService } from 'src/app/core/services/intern.service';
 import { POEService } from 'src/app/core/services/poe.service';
@@ -16,6 +18,7 @@ import { Intern } from './../../../core/models/intern';
 export class InternAddComponent implements OnInit {
 
   public internForm!: FormGroup;
+  public poes : POE[] = [];
 
   constructor(
     private poeService : POEService,
@@ -26,6 +29,18 @@ export class InternAddComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    //Debut de la recuperation de mon tableau de POES
+    this.poeService.findAll()
+    .pipe(
+      take(1)
+    )
+    .subscribe((poes : POE[]) => {
+      this.poes = poes;
+    })
+    //Fin recuperation de mon tableau de POES
+
+    //Debut de la construction de mon formulaire pour ajouter un interne
     this.internForm = this.formBuilder.group({
       name: [
         '', // Default value for the field control
@@ -62,8 +77,15 @@ export class InternAddComponent implements OnInit {
           DateValidator.dateNotLessThan
 
         ]
+      ],
+      poes: [
+        '',
+        [
+          Validators.required
+        ]
       ]
     });
+
   }
 
   public onSubmit(): void {
@@ -73,10 +95,10 @@ export class InternAddComponent implements OnInit {
     // Next we'll have to create a new Intern Instance
     const intern: Intern = new Intern();
     // intern.id = nextId;
-    intern.name = this.internForm.value.name;
+    // intern.name = this.internForm.value.name;
 
     // We'll have to pass brand new intern to the add method of our service
-    this.internService.add(intern).subscribe(() => {
+    this.internService.add(this.internForm.value).subscribe(() => {
       // Load a snack
     this.crudSnackBar.config(`Intern was successfully added`, `Got It`);
     this.crudSnackBar.open();

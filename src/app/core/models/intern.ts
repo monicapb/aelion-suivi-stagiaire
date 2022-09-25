@@ -1,5 +1,6 @@
 import { Expose, plainToInstance, Type } from "class-transformer";
 import { Serializable } from "./interfaces/serializable";
+import 'reflect-metadata';
 
 export class Intern  implements Serializable <Intern> {
   @Expose()
